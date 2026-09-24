@@ -1,0 +1,31 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020b16"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Noavus Vote">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><title>Noavus Vote</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#123a67,#06172c 30%,#010813 72%);color:white;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.app{width:min(720px,100%);min-height:100dvh;margin:auto;padding:max(18px,env(safe-area-inset-top)) 18px max(24px,env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;gap:14px;padding:8px 2px 14px}.logo{width:58px;height:58px;border-radius:16px;box-shadow:0 0 20px #00bfff55}.brand{flex:1}.brand h1{font-size:31px;letter-spacing:3px;margin:0;font-weight:950}.brand div{color:#37caff;letter-spacing:5px;font-size:13px;font-weight:800}
+.hero{position:relative;border-radius:25px;overflow:hidden;border:1px solid #159cff55;box-shadow:0 12px 35px #0009;margin-bottom:18px}.hero img{display:block;width:100%;height:clamp(250px,43vh,410px);object-fit:cover}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#020b16)}
+.heroText{position:absolute;z-index:2;left:0;right:0;bottom:14px;text-align:center;text-shadow:0 4px 16px #000}.heroText strong{display:block;font-size:clamp(40px,10vw,70px);line-height:.9;font-weight:1000}.heroText span{font-size:clamp(28px,8vw,50px);font-style:italic;font-weight:1000;color:#38d8ff}
+.cards{display:grid;gap:16px}.card{border-radius:23px;padding:18px;border:1px solid var(--accent);background:linear-gradient(135deg,var(--bg),#03101d);box-shadow:0 0 22px var(--glow)}.head{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;margin-bottom:14px}.sym{font-size:39px;text-align:center;color:var(--accent)}h2{font-size:19px;margin:0 0 3px;font-weight:950}.card p{margin:0;color:#b8c6d7;font-size:14px}
+.vote{display:flex;align-items:center;justify-content:center;width:100%;min-height:62px;border-radius:16px;color:white;text-decoration:none;font-size:21px;font-weight:950;background:linear-gradient(90deg,var(--b1),var(--b2));box-shadow:inset 0 1px #ffffff55}
+.blue{--accent:#18bfff;--bg:#06264b;--glow:#008cff22;--b1:#0877ff;--b2:#17c9ee}.green{--accent:#18ef8e;--bg:#073b31;--glow:#00ef8020;--b1:#08a967;--b2:#0ee08b}
+.status{margin-top:18px;display:grid;grid-template-columns:52px 1fr 50px;align-items:center;gap:12px;border:1px solid #365271;border-radius:22px;padding:15px;background:#071523;cursor:pointer}.cal{font-size:32px;text-align:center}.status strong{display:block;font-size:18px}.status small{display:block;color:#aebed0;font-size:13px;margin-top:2px}.check{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#34485f;font-size:27px;font-weight:900}.done .check{background:#10ce58;box-shadow:0 0 18px #10ce5866}.check:before{content:"–"}.done .check:before{content:"✓"}
+@media(min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+</style></head><body><main class="app">
+<header class="top"><img class="logo" src="icon-192.png"><div class="brand"><h1>NOAVUS</h1><div>VOTE REMINDER</div></div></header>
+<section class="hero"><img src="noavus-hero.jpg"><div class="heroText"><strong>NOAVUS</strong><span>VOTE</span></div></section>
+<section class="cards">
+<div class="card blue"><div class="head"><div class="sym">◆</div><div><h2>MINECRAFT-SERVERLIST.NET</h2><p>Vote für Noavus auf Serverlist.net</p></div></div><a class="vote" href="https://www.minecraft-serverlist.net/vote/51076/Noavus" target="_blank" rel="noopener">↗ &nbsp; JETZT VOTEN</a></div>
+<div class="card green"><div class="head"><div class="sym">◎</div><div><h2>MINECRAFT-SERVER.EU</h2><p>Vote für Noavus auf Server.eu</p></div></div><a class="vote" href="https://minecraft-server.eu/vote/index/208F7/Noavus" target="_blank" rel="noopener">↗ &nbsp; JETZT VOTEN</a></div>
+</section>
+<section id="status" class="status"><div class="cal">▣</div><div><strong id="st">Für heute noch offen</strong><small id="ss">Antippen, wenn du heute gevotet hast.</small></div><div class="check"></div></section>
+</main><script>
+const k='noavus_vote_day_v2',d=()=>new Date().toLocaleDateString('sv-SE'),b=document.getElementById('status'),t=document.getElementById('st'),s=document.getElementById('ss');
+function draw(){let x=localStorage.getItem(k)===d();b.classList.toggle('done',x);t.textContent=x?'Für heute erledigt':'Für heute noch offen';s.textContent=x?'Du hast heute bereits gevotet.':'Antippen, wenn du heute gevotet hast.'}
+b.onclick=()=>{localStorage.getItem(k)===d()?localStorage.removeItem(k):localStorage.setItem(k,d());draw()};draw();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
